@@ -83,25 +83,8 @@ Send the round in the format under "Required output format". Then stop.
 - Brief whoever builds it with the prototype link and the exact values: colors, sizes, spacing and type. Nobody rebuilds it from memory.
 - Describe the design by what it is ("dense table, status pills, left rail"), never by its label.
 - Apply later general feedback ("too busy", "no hierarchy") only where I pointed. It isn't permission to remove things I liked in the prototype. Before you drop or change a prototype element, name it and ask.
-- Before opening the build PR, run the check below.
 
-**Done when:** the build matches the pick, and the check passes.
-
-## The check
-
-Rules 1 and 4 are the ones agents broke most, so they're enforced by a script instead of a sentence:
-
-```sh
-scripts/check-prototype-labels.sh main "B2" "Sakin"
-```
-
-Pass the base branch and every label or nickname used during the rounds. The script exits non-zero if:
-
-- the current branch is `proto/*`, because prototypes don't get PRs
-- any line the branch adds mentions a label you passed
-- any added line matches a generic label pattern such as "variant B" or "direction A2"
-
-If it flags something, rename it to describe the design. Don't bypass the check.
+**Done when:** the build matches the pick, and no prototype label appears in the code, commits, PR or issues.
 
 ## Required output format
 
@@ -129,4 +112,3 @@ Keep it to this. The prototype does the explaining.
 | `/prototype-first` | Full workflow from Phase 1, stops after Phase 3 |
 | `/prototype-first <variant>` | Iterate on one variant from the last round, back to Phase 3 |
 | `/prototype-first compare` | One prototype with a NOW / PROPOSED toggle against the current UI |
-| `/prototype-first check` | Run the label check on the current branch |
